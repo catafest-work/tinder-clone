@@ -2,6 +2,12 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# commands : 
+
+tinder-clone>npx create-react-app . 
+tinder-clone>npm i react-router-dom
+tinder-clone>npm run start      
+
 ## Available Scripts
 
 In the project directory, you can run:
