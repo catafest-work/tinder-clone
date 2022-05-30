@@ -1,5 +1,6 @@
 import TinderCard from "react-tinder-card"
 import {useState} from 'react'
+import ChatContainer from '../components/ChatContainer'
 
 const Dashboard = () => {
   const characters = [
@@ -37,7 +38,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      {/* <ChatContainer /> */}
+      <ChatContainer />
       <div className="swiper-container">
         <div className="card-container">
           {characters.map((character) => // errori si modificari ...
