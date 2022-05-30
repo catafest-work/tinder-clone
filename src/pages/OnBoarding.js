@@ -2,35 +2,36 @@ import Nav from '../components/Nav'
 import {useState} from 'react'
 
 const OnBoarding = () => {
+  //const [cookies, setCookie, removeCookie] = useCookies(null)
   const [formData, setFormData] = useState({
-    user_id: "",
-    first_name: "",
-    dob_day: "",
-    dob_month: "",
-    dob_year: "",
-    show_gender: false,
-    gender_identity: "man",
-    gender_interest: "woman",
-    email: "",
-    url: "",
-    about: '', 
-    matches: []
+      user_id: "",
+      first_name: "",
+      dob_day: "",
+      dob_month: "",
+      dob_year: "",
+      show_gender: false,
+      gender_identity: "man",
+      gender_interest: "woman",
+      url: "",
+      about: "",
+      matches: []
+
   })
 
   const handleSubmit = () => {
-    console.log('submited')
+    console.log('submitted')
   }
   
-  const handleChange = (e) => {
-    //console.log('event=> ' , e)
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    const name = e.target.name
-    console.log('value: '+value, 'name: ' + name)
-    setFormData((prevState, value) =>({
-      ...prevState,
-      [name]: value
-    }))
-  }
+    const handleChange = (e) => {
+        console.log('e', e)
+        const value = e.target.type === "checkbox" ? e.target.checked : e.target.value
+        const name = e.target.name
+
+        setFormData((prevState) => ({ //err
+            ...prevState,
+            [name]: value
+        }))
+    }
   
   console.log(formData)
 
@@ -179,7 +180,8 @@ const OnBoarding = () => {
             required={true}
             />
             <div className="photo-container">
-              <img src={formData.url} alt="profile pic preview"/>
+              <img src={formData.url} alt="profile pic previes" />
+              
             </div>
           </section>
         </form>
