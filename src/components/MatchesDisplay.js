@@ -1,8 +1,9 @@
+/* eslint-disable no-unreachable */
 const MatchesDiplay = () => {
   return
-  ( 
-    <div className="">Matches Diplay</div>
-  )
+    ( 
+     <div className="matches-display"></div>
+    )
   }
 
 export default MatchesDiplay

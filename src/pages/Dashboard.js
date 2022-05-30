@@ -1,6 +1,6 @@
 import TinderCard from "react-tinder-card"
 import {useState} from 'react'
-import ChatContainer from '../components/ChatContainer'
+import ChatContainer from "../components/ChatContainer"
 
 const Dashboard = () => {
   const characters = [
@@ -38,8 +38,8 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <ChatContainer />
-      <div className="swiper-container">
+      <ChatContainer/>
+      <div className="swipe-container">
         <div className="card-container">
           {characters.map((character) => // errori si modificari ...
             <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen ={() => outOfFrame(character.name)}>

@@ -15,7 +15,6 @@ const OnBoarding = () => {
       url: "",
       about: "",
       matches: []
-
   })
 
   const handleSubmit = () => {
@@ -127,7 +126,6 @@ const OnBoarding = () => {
               onChange={handleChange}
               checked={formData.show_gender}
              /> 
-             
              <label>Show Me</label>
              <div className="multiple-input-container">
              <input 
@@ -181,7 +179,6 @@ const OnBoarding = () => {
             />
             <div className="photo-container">
               <img src={formData.url} alt="profile pic previes" />
-              
             </div>
           </section>
         </form>
