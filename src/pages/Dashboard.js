@@ -5,23 +5,23 @@ const Dashboard = () => {
   const characters = [
     {
       name: "Richard Hendricks",
-      url: './img/richard.jpg'
+      url: 'https://i.imgur.com/NAGTvvz.png'
     },
     {
       name: 'Erlich Bachman',
-      url: './img/erlich.jpg'
+      url: 'https://i.imgur.com/NAGTvvz.png'
     },
     {
       name: 'Monica Hall',
-      url: './img/monica.jpg'
+      url: 'https://i.imgur.com/NAGTvvz.png'
     },
     {
       name: 'Jared Dunn',
-      url: './img/jared.jpg'
+      url: 'https://i.imgur.com/NAGTvvz.png'
     },
     {
       name: 'Dinesh Chugtai',
-      url:'img/dinesh.jpg'
+      url:'https://i.imgur.com/NAGTvvz.png'
     }
   ]
   const [lastDirection, setLastDirection] = useState()
@@ -41,8 +41,8 @@ const Dashboard = () => {
       <div className="swiper-container">
         <div className="card-container">
           {characters.map((character) => // errori si modificari ...
-            <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen = {() => outOfFrame(character.name)}>
-            <div style={{ backgroundImage: 'url(' +character.url + ')' }} className='card' >
+            <TinderCard className='swipe' key={character.name} onSwipe={(dir) => swiped(dir, character.name)} onCardLeftScreen ={() => outOfFrame(character.name)}>
+            <div style={{ backgroundImage: 'url(' +character.url + ')' }} className='card'>
             <h3>{character.name}</h3>
             </div>
             </TinderCard>
