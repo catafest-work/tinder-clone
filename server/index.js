@@ -81,20 +81,51 @@ app.post('/login', async (req, res) => {
 
     res.status(201).json({ token, userId: user.user_id })
     }
-    res.status(400).send('Invalid Credentials')
+    res.status(400).send('Invalid Credentials')  //?
+
   } catch (err)
   { console.error(err); }
 })
 
-app.get('/users', async (req, res) => {
+app.get('/user', async (req, res) => {
+  const client = new MongoClient(uri)
+  const userId = req.query.userId
+
+  console.log("userId is : ", userId)
+
+  try { 
+    await client.connect()
+    const database = client.db('tinder-app')
+    //console.log('database ', database)
+    const users = database.collection('tinder-app')
+    
+    const query = { user_id: userId }
+    const user = await users.findOne(query)
+    res.send(user)
+
+    // test axios network error fix
+    // if(res.headersSent !== true) {
+    //   res.send('Hello');
+    // }
+    //
+
+    } finally {
+      await client.close()
+  }
+})
+
+app.get('/gendered-users', async (req, res) => {
   const client = new MongoClient(uri);
+  const gender = req.query.gender
   try {
     await client.connect()
     const database = client.db('tinder-app')
     //console.log('database ', database)
     const users = database.collection('tinder-app')
-    const returnedUsers =  await users.find().toArray()
-    res.send(returnedUsers)
+    const query = { gender_identity: gender}
+    const foundUsers = await users.find(query).toArray()
+    //const returnedUsers =  await users.find().toArray()
+    res.send(foundUsers)
   } finally {
     await client.close()
   }
@@ -104,7 +135,7 @@ app.put('/user', async (req, res) => {
   const client = new MongoClient(uri);
   const formData= req.body.formData
 
-  console.log(formData)
+  console.log("formData is : ", formData)
 
   try { 
 

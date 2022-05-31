@@ -1,8 +1,46 @@
 import TinderCard from "react-tinder-card"
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import ChatContainer from "../components/ChatContainer"
+import axios from "axios"
+import { useCookies } from "react-cookie"
 
 const Dashboard = () => {
+  const [user, setUser] = useState(null)
+  const [genderedUsers, setGenderedUsers] = useState(null)
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
+
+  const userId = cookies.UserId
+
+  const getUser = async () => { 
+    try {
+      const response = await axios.get('http://localhost:8080/user', {
+        params: { userId }
+      })
+      setUser(response.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  const getGenderedUsers = async () => { 
+    try {
+      const response = await axios.get('http://localhost:8080/gendered-users', {
+        params: { gender: user?.gender_interest }
+      })
+      setGenderedUsers(response.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    getUser()
+    getGenderedUsers()
+  }, [])
+  
+  console.log('user is : ', user)
+  console.log('gendered users is : ', getGenderedUsers)
+
   const characters = [
     {
       name: "Richard Hendricks",
@@ -37,8 +75,10 @@ const Dashboard = () => {
   }
 
   return (
+    <>
+    {user && 
     <div className="dashboard">
-      <ChatContainer/>
+      <ChatContainer user={user}/>
       <div className="swipe-container">
         <div className="card-container">
           {characters.map((character) => // errori si modificari ...
@@ -52,6 +92,8 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    }
+    </>
   )
 }
 export default Dashboard
